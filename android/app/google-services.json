@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "88966980004",
+    "firebase_url": "https://logisticx-5e833-default-rtdb.firebaseio.com",
+    "project_id": "logisticx-5e833",
+    "storage_bucket": "logisticx-5e833.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88966980004:android:e365abd3fb09862c97a131",
+        "android_client_info": {
+          "package_name": "com.example.logisticx_datn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88966980004-6cp9ovmo84tqpbcmf1cj54ucs1vipjal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFjmcBBguHNhl33bqmXhvse4DNpSYSrZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88966980004-6cp9ovmo84tqpbcmf1cj54ucs1vipjal.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "88966980004-np4ukol02s567b7lelt79nsu6l45rt2c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.logisticxDatn"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88966980004:android:f4e50bef379efd3497a131",
+        "android_client_info": {
+          "package_name": "com.example.logisticx_datn_driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88966980004-6cp9ovmo84tqpbcmf1cj54ucs1vipjal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFjmcBBguHNhl33bqmXhvse4DNpSYSrZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88966980004-6cp9ovmo84tqpbcmf1cj54ucs1vipjal.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "88966980004-np4ukol02s567b7lelt79nsu6l45rt2c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.logisticxDatn"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88966980004:android:e503e6dd262da91597a131",
+        "android_client_info": {
+          "package_name": "com.example.logisticx_datn_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88966980004-6cp9ovmo84tqpbcmf1cj54ucs1vipjal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFjmcBBguHNhl33bqmXhvse4DNpSYSrZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88966980004-6cp9ovmo84tqpbcmf1cj54ucs1vipjal.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "88966980004-np4ukol02s567b7lelt79nsu6l45rt2c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.logisticxDatn"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
