@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logisticx_datn_driver/global/global.dart';
+import 'package:logisticx_datn_driver/screens/car_info_screen.dart';
 import 'package:logisticx_datn_driver/screens/login_screen.dart';
-import 'package:logisticx_datn_driver/screens/user_home_screen.dart';
+import 'package:logisticx_datn_driver/screens/driver_home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -53,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           }
           await Fluttertoast.showToast(msg: "Đăng ký thành công");
           Navigator.push(
-              context, MaterialPageRoute(builder: (c) => UserHomeScreen()));
+              context, MaterialPageRoute(builder: (c) => CarInfoScreen()));
         });
       } catch (error) {
         if (error is FirebaseAuthException) {
