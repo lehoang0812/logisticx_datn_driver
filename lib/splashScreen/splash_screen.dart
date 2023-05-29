@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:logisticx_datn_driver/assistants/assistant_methods.dart';
 import 'package:logisticx_datn_driver/global/global.dart';
-import 'package:logisticx_datn_driver/screens/user_home_screen.dart';
+import 'package:logisticx_datn_driver/screens/driver_home_screen.dart';
 
 import '../screens/login_screen.dart';
 
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ? AssistantMethods.readCurrentOnlineUserInfo()
             : null;
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => UserHomeScreen()));
+            context, MaterialPageRoute(builder: (c) => DriverHomeScreen()));
       } else {
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => LoginScreen()));

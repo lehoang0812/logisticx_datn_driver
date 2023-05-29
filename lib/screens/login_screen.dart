@@ -1,12 +1,14 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logisticx_datn_driver/global/global.dart';
 import 'package:logisticx_datn_driver/screens/register_screen.dart';
-import 'package:logisticx_datn_driver/screens/user_home_screen.dart';
+import 'package:logisticx_datn_driver/screens/driver_home_screen.dart';
+import 'package:logisticx_datn_driver/splashScreen/splash_screen.dart';
 
 import 'forgot_password_screen.dart';
 
@@ -32,10 +34,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 email: emailController.text.trim(),
                 password: passwordController.text.trim())
             .then((auth) async {
-          currentUser = auth.user;
-          await Fluttertoast.showToast(msg: "Đăng nhập thành công");
-          Navigator.push(
-              context, MaterialPageRoute(builder: (c) => UserHomeScreen()));
+          DatabaseReference userRef =
+              FirebaseDatabase.instance.ref().child("drivers");
+          userRef
+              .child(firebaseAuth.currentUser!.uid)
+              .once()
+              .then((value) async {
+            final snap = value.snapshot;
+            if (snap.value != null) {
+              currentUser = auth.user;
+              await Fluttertoast.showToast(msg: "Đăng nhập thành công");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => DriverHomeScreen()));
+            } else {
+              await Fluttertoast.showToast(msg: "Không tìm thấy tài khoản");
+              firebaseAuth.signOut();
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (c) => SplashScreen()));
+            }
+          });
         });
       } catch (error) {
         if (error is FirebaseAuthException) {
@@ -107,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 30,
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                   child: TextFormField(
                     inputFormatters: [LengthLimitingTextInputFormatter(50)],
                     style: TextStyle(fontSize: 18, color: Colors.black),
