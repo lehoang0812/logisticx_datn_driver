@@ -33,7 +33,8 @@ class AssistantMethods {
     var requestResponse = await RequestAssistant.receiveRequest(apiUrl);
 
     if (requestResponse != "Error Occured. Failed. No Response.") {
-      humanReadableAddress = requestResponse["results"][0]["formatted_address"];
+      humanReadableAddress = requestResponse["results"][0][
+          "formatted_address"]; //"CWH7+5P Mountain View, California, Hoa K\u1ef3";
 
       Directions userPickUpAddress = Directions();
       userPickUpAddress.locationLatitude = position.latitude;

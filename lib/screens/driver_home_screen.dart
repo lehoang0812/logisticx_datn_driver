@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:logisticx_datn_driver/global/global.dart';
 
+import '../tabPages/home_tab.dart';
+
 class DriverHomeScreen extends StatefulWidget {
   const DriverHomeScreen({super.key});
 
@@ -35,7 +37,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen>
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,
         children: [
-          // HomeTabPage(),
+          HomeTabPage(),
           // EarningTabPage(),
           // RatingsTabPage(),
           // ProfileTabPage(),
