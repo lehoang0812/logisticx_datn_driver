@@ -8,6 +8,7 @@ import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:logisticx_datn_driver/pushNotification/push_notification_system.dart';
 
 import '../assistants/assistant_methods.dart';
 import '../global/global.dart';
@@ -84,6 +85,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
             (snap.snapshot.value as Map)["car_details"]["car_number"];
         onlineDriverData.car_color =
             (snap.snapshot.value as Map)["car_details"]["car_color"];
+        onlineDriverData.car_type =
+            (snap.snapshot.value as Map)["car_details"]["type"];
 
         driverVehicleType = (snap.snapshot.value as Map)["car_details"]["type"];
       }
@@ -97,6 +100,10 @@ class _HomeTabPageState extends State<HomeTabPage> {
     checkIfLocationPermisstionAllowed();
 
     readCurrentDriverInfor();
+
+    PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
+    pushNotificationSystem.initializeCloudMessaging(context);
+    pushNotificationSystem.generateAndGetToken();
   }
 
   @override
