@@ -77,4 +77,26 @@ class AssistantMethods {
     streamSubscriptionPosition!.pause();
     Geofire.removeLocation(firebaseAuth.currentUser!.uid);
   }
+
+  static double calculateFareAmountFromOriginToDestination(
+      DirectionDetailsInfo directionDetailsInfo) {
+    double distanceTraveledFareAmountPerKilometer =
+        (directionDetailsInfo.duration_value! / 1000) * 0.1;
+    double totalFareAmount = distanceTraveledFareAmountPerKilometer * 286;
+    double localCurrencyTotalFare = totalFareAmount * 107;
+
+    if (driverVehicleType == "Bike") {
+      double resultFareAmount = ((localCurrencyTotalFare.truncate()) * 0.8);
+      resultFareAmount;
+    } else if (driverVehicleType == "Car") {
+      double resultFareAmount = ((localCurrencyTotalFare.truncate()) * 1.5);
+      resultFareAmount;
+    } else if (driverVehicleType == "Truck") {
+      double resultFareAmount = ((localCurrencyTotalFare.truncate()) * 3);
+      resultFareAmount;
+    } else {
+      return localCurrencyTotalFare.truncate().toDouble();
+    }
+    return localCurrencyTotalFare.truncate().toDouble();
+  }
 }

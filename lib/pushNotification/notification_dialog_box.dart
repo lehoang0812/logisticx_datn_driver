@@ -6,6 +6,7 @@ import 'package:logisticx_datn_driver/assistants/assistant_methods.dart';
 import 'package:logisticx_datn_driver/models/user_ride_request_info.dart';
 
 import '../global/global.dart';
+import '../screens/new_trip_screen.dart';
 
 class NotificationDialogBox extends StatefulWidget {
   UserRideRequestInfo? userRideRequestDetails;
@@ -199,7 +200,11 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
 
         //chuyen di bat dau, chuyen driver sang man hinh di chuyen
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => NewTripScreen()));
+            context,
+            MaterialPageRoute(
+                builder: (c) => NewTripScreen(
+                      userRideRequestDetails: widget.userRideRequestDetails,
+                    )));
       } else {
         Fluttertoast.showToast(msg: "Không tìm thấy đơn hàng");
       }

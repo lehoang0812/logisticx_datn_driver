@@ -79,6 +79,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
         onlineDriverData.phone = (snap.snapshot.value as Map)["phone"];
         onlineDriverData.email = (snap.snapshot.value as Map)["email"];
         onlineDriverData.address = (snap.snapshot.value as Map)["address"];
+        onlineDriverData.ratings = (snap.snapshot.value as Map)["ratings"];
         onlineDriverData.car_model =
             (snap.snapshot.value as Map)["car_details"]["car_model"];
         onlineDriverData.car_number =
