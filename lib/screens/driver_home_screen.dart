@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:logisticx_datn_driver/global/global.dart';
 
+import '../tabPages/earning_tab.dart';
 import '../tabPages/home_tab.dart';
+import '../tabPages/profile_tab.dart';
+import '../tabPages/ratings_tab.dart';
 
 class DriverHomeScreen extends StatefulWidget {
   const DriverHomeScreen({super.key});
@@ -38,9 +41,9 @@ class _DriverHomeScreenState extends State<DriverHomeScreen>
         controller: tabController,
         children: [
           HomeTabPage(),
-          // EarningTabPage(),
-          // RatingsTabPage(),
-          // ProfileTabPage(),
+          EarningsTabPage(),
+          RatingsTabPage(),
+          ProfileTabPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -49,25 +52,25 @@ class _DriverHomeScreenState extends State<DriverHomeScreen>
             icon: Icon(
               Icons.home,
             ),
-            label: "Home",
+            label: "Trang chủ",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.credit_card,
             ),
-            label: "Earnings",
+            label: "Thu nhập",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.star,
             ),
-            label: "Ratings",
+            label: "Đánh giá",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
             ),
-            label: "Account",
+            label: "Tài khoản",
           ),
         ],
         unselectedItemColor: Colors.white54,
