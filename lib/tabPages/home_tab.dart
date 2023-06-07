@@ -62,6 +62,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
         await AssistantMethods.searchAddressForGeographicCoOrdinates(
             driverCurrentPosition!, context);
     print("Địa chỉ của tôi là: " + humanReadableAddress);
+
+    AssistantMethods.readDriverRatings(context);
   }
 
   readCurrentDriverInfor() async {
@@ -92,6 +94,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
         driverVehicleType = (snap.snapshot.value as Map)["car_details"]["type"];
       }
     });
+
+    AssistantMethods.readDriverEarnings(context);
   }
 
   @override

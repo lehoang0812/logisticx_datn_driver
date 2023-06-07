@@ -23,3 +23,5 @@ Position? driverCurrentPosition;
 DriverData onlineDriverData = DriverData();
 
 String? driverVehicleType = "";
+
+String titleStarsRating = "";
