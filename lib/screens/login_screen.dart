@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logisticx_datn_driver/global/global.dart';
 import 'package:logisticx_datn_driver/screens/register_screen.dart';
-import 'package:logisticx_datn_driver/screens/driver_home_screen.dart';
 import 'package:logisticx_datn_driver/splashScreen/splash_screen.dart';
+import 'package:logisticx_datn_driver/tabPages/home_tab.dart';
 
 import 'forgot_password_screen.dart';
 
@@ -44,8 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
             if (snap.value != null) {
               currentUser = auth.user;
               await Fluttertoast.showToast(msg: "Đăng nhập thành công");
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => DriverHomeScreen()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (c) => HomeTabPage()));
             } else {
               await Fluttertoast.showToast(msg: "Không tìm thấy tài khoản");
               firebaseAuth.signOut();

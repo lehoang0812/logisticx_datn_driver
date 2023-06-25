@@ -42,7 +42,7 @@ dependencies:
   firebase_messaging:
   equatable:
   google_sign_in:
-  google_maps_flutter:
+  google_maps_flutter: ^2.3.0
   geocoder2: ^1.4.0
   geolocator: ^9.0.2
   flutter_geofire: ^2.0.3
@@ -58,6 +58,7 @@ dependencies:
   provider: ^6.0.5
   assets_audio_player: ^3.0.6
   intl: ^0.18.1
+  flutter_image_compress: ^2.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,10 +11,9 @@ import 'package:logisticx_datn_driver/pushNotification/push_notification_system.
 
 import '../assistants/assistant_methods.dart';
 import '../global/global.dart';
+import '../screens/drawer_screen.dart';
 
 class HomeTabPage extends StatefulWidget {
-  const HomeTabPage({super.key});
-
   @override
   State<HomeTabPage> createState() => _HomeTabPageState();
 }
@@ -28,6 +26,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
+
+  GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
   var geoLocator = Geolocator();
 
@@ -89,9 +89,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
         onlineDriverData.car_color =
             (snap.snapshot.value as Map)["car_details"]["car_color"];
         onlineDriverData.car_type =
-            (snap.snapshot.value as Map)["car_details"]["type"];
-
-        driverVehicleType = (snap.snapshot.value as Map)["car_details"]["type"];
+            (snap.snapshot.value as Map)["car_details"]["car_type"];
       }
     });
 
@@ -113,87 +111,116 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GoogleMap(
-          padding: EdgeInsets.only(top: 40),
-          mapType: MapType.normal,
-          myLocationEnabled: true,
-          zoomGesturesEnabled: true,
-          zoomControlsEnabled: true,
-          initialCameraPosition: _kGooglePlex,
-          onMapCreated: (GoogleMapController controller) {
-            _controllerGGMap.complete(controller);
-            newGGMapController = controller;
-            locateDriverPosition();
-          },
-        ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        key: _scaffoldState,
+        drawer: DrawerScreen(),
+        body: Stack(
+          children: [
+            GoogleMap(
+              padding: EdgeInsets.only(top: 40),
+              mapType: MapType.normal,
+              myLocationEnabled: true,
+              zoomGesturesEnabled: true,
+              zoomControlsEnabled: true,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                _controllerGGMap.complete(controller);
+                newGGMapController = controller;
+                locateDriverPosition();
+              },
+            ),
 
-        //ui cho tài xế offline/online
-        statusText != "Đang online"
-            ? Container(
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                color: Colors.black87,
-              )
-            : Container(),
-
-        //nut tắt bật chế độ offline/online
-        Positioned(
-          top: statusText != "Đang online"
-              ? MediaQuery.of(context).size.height * 0.45
-              : 40,
-          left: 0,
-          right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    if (isDriverActive != true) {
-                      driverIsOnlineNow();
-                      updateDriverLocationAtRealTime();
-
-                      setState(() {
-                        statusText = "Đang online";
-                        isDriverActive = true;
-                        buttonColor = Colors.transparent;
-                      });
-                    } else {
-                      driverIsOfflineNow();
-                      setState(() {
-                        statusText = "Đang offline";
-                        isDriverActive = false;
-                        buttonColor = Colors.grey;
-                      });
-                      Fluttertoast.showToast(msg: 'Bạn đang offline');
-                    }
+            //nut mo drawer
+            Positioned(
+              top: 50,
+              left: 20,
+              child: Container(
+                child: GestureDetector(
+                  onTap: () {
+                    _scaffoldState.currentState!.openDrawer();
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: buttonColor,
-                    padding: EdgeInsets.symmetric(horizontal: 18),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(26),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.menu,
+                      color: Colors.lightBlue,
                     ),
                   ),
-                  child: statusText != "Đang online"
-                      ? Text(
-                          statusText,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        )
-                      : Icon(
-                          Icons.phonelink_ring,
-                          color: Colors.white,
-                          size: 26,
-                        ))
-            ],
-          ),
-        )
-      ],
+                ),
+              ),
+            ),
+
+            //ui cho tài xế offline/online
+            statusText != "Đang online"
+                ? Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: double.infinity,
+                    color: Colors.black87,
+                  )
+                : Container(),
+
+            //nut tắt bật chế độ offline/online
+            Positioned(
+              top: statusText != "Đang online"
+                  ? MediaQuery.of(context).size.height * 0.45
+                  : 40,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        if (isDriverActive != true) {
+                          driverIsOnlineNow();
+                          updateDriverLocationAtRealTime();
+
+                          setState(() {
+                            statusText = "Đang online";
+                            isDriverActive = true;
+                            buttonColor = Colors.transparent;
+                          });
+                        } else {
+                          driverIsOfflineNow();
+                          setState(() {
+                            statusText = "Đang offline";
+                            isDriverActive = false;
+                            buttonColor = Colors.grey;
+                          });
+                          Fluttertoast.showToast(msg: 'Bạn đang offline');
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        padding: EdgeInsets.symmetric(horizontal: 18),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(26),
+                        ),
+                      ),
+                      child: statusText != "Đang online"
+                          ? Text(
+                              statusText,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Icon(
+                              Icons.phonelink_ring,
+                              color: Colors.white,
+                              size: 26,
+                            ))
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 

@@ -36,18 +36,21 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(onlineDriverData.car_type == "Car"
-                ? "./assets/car.png"
-                : onlineDriverData.car_type == "Truck"
-                    ? "./assets/truck.png"
-                    : "./assets/bike.png"),
+            Image.asset(
+              onlineDriverData.car_type == "Car"
+                  ? "./assets/car.png"
+                  : onlineDriverData.car_type == "Truck"
+                      ? "./assets/truck.png"
+                      : "./assets/bike.png",
+              scale: 7,
+            ),
             SizedBox(
               height: 10,
             ),
 
             //title
             Text(
-              "Đặt đơn mới",
+              "Có đơn hàng mới",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
@@ -81,6 +84,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                         child: Container(
                           child: Text(
                             widget.userRideRequestDetails!.originAddress!,
+                            // "hehe",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.blue,
@@ -107,6 +111,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                         child: Container(
                           child: Text(
                             widget.userRideRequestDetails!.destinationAddress!,
+                            // "hehe",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.blue,
@@ -134,10 +139,6 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      audioPlayer.pause();
-                      audioPlayer.stop();
-                      audioPlayer = AssetsAudioPlayer();
-
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
@@ -155,10 +156,6 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      audioPlayer.pause();
-                      audioPlayer.stop();
-                      audioPlayer = AssetsAudioPlayer();
-
                       acceptRideRequest(context);
                     },
                     style: ElevatedButton.styleFrom(

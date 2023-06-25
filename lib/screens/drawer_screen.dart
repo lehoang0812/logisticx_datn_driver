@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:logisticx_datn_driver/global/global.dart';
-import 'package:logisticx_datn_driver/screens/profile_screen.dart';
 import 'package:logisticx_datn_driver/splashScreen/splash_screen.dart';
+import 'package:logisticx_datn_driver/tabPages/earning_tab.dart';
+import 'package:logisticx_datn_driver/tabPages/profile_tab.dart';
+import 'package:logisticx_datn_driver/tabPages/ratings_tab.dart';
+
+import 'trips_history_screen.dart';
 
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({super.key});
@@ -35,7 +39,7 @@ class DrawerScreen extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      userModelCurrentInfo!.name!,
+                      onlineDriverData.name!,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -46,8 +50,10 @@ class DrawerScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (c) => ProfileScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => ProfileTabPage()));
                       },
                       child: Text(
                         "Quản lý tài khoản",
@@ -61,21 +67,37 @@ class DrawerScreen extends StatelessWidget {
                     SizedBox(
                       height: 30,
                     ),
-                    Text(
-                      "Đơn hàng của bạn",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => TripsHistoryScreen()));
+                      },
+                      child: Text(
+                        "Đơn hàng của bạn",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      "Thanh toán",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => EarningsTabPage()));
+                      },
+                      child: Text(
+                        "Thu nhập",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -91,11 +113,19 @@ class DrawerScreen extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      "Khuyến mãi",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => RatingsTabPage()));
+                      },
+                      child: Text(
+                        "Đánh giá",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -110,13 +140,6 @@ class DrawerScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 15,
-                    ),
-                    Text(
-                      "Đơn hàng miễn phí",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
                     ),
                   ],
                 ),

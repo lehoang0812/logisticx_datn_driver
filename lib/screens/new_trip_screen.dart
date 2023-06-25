@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:typed_data';
 
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
@@ -251,14 +254,32 @@ class _NewTripScreenState extends State<NewTripScreen> {
     }
   }
 
-  createDriverIconMarker() {
+  // createDriverIconMarker() {
+  //   if (iconAnimatedMarker == null) {
+  //     ImageConfiguration imageConfiguration =
+  //         createLocalImageConfiguration(context, size: Size(2, 2));
+  //     BitmapDescriptor.fromAssetImage(imageConfiguration, "./assets/car.png")
+  //         .then((value) {
+  //       iconAnimatedMarker = value;
+  //     });
+  //   }
+  // }
+
+  Future<void> createDriverIconMarker() async {
     if (iconAnimatedMarker == null) {
-      ImageConfiguration imageConfiguration =
-          createLocalImageConfiguration(context, size: Size(2, 2));
-      BitmapDescriptor.fromAssetImage(imageConfiguration, "./assets/car.png")
-          .then((value) {
-        iconAnimatedMarker = value;
-      });
+      ByteData byteData = await rootBundle.load('./assets/car.png');
+      Uint8List imageData = byteData.buffer.asUint8List();
+
+      // Thay đổi kích thước hình ảnh và nén
+      Uint8List compressedImageData =
+          await FlutterImageCompress.compressWithList(
+        imageData,
+        minHeight: 2, // Chiều cao tối thiểu sau khi thu nhỏ
+        minWidth: 2, // Chiều rộng tối thiểu sau khi thu nhỏ
+        quality: 80, // Chất lượng hình ảnh sau khi nén (từ 0-100)
+      );
+
+      iconAnimatedMarker = BitmapDescriptor.fromBytes(compressedImageData);
     }
   }
 

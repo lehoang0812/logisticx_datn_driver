@@ -4,8 +4,6 @@ import 'package:logisticx_datn_driver/infoHandler/app_info.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
-import '../screens/trips_history_screen.dart';
-
 class RatingsTabPage extends StatefulWidget {
   @override
   State<RatingsTabPage> createState() => _RatingsTabPageState();

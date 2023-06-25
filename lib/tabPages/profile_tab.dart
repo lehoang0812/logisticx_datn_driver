@@ -286,7 +286,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                         ),
                         IconButton(
                           onPressed: () {
-                            showDriverNameDialogAlert(
+                            showDriverPhoneDialogAlert(
                                 context, onlineDriverData.phone!);
                           },
                           icon: Icon(
@@ -303,7 +303,9 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${onlineDriverData.address!}",
+                          onlineDriverData.address!.length > 14
+                              ? "${onlineDriverData.address!.substring(0, 14)}..."
+                              : "${onlineDriverData.address!}",
                           style: TextStyle(
                             color: Colors.blue,
                             fontSize: 18,
@@ -312,7 +314,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                         ),
                         IconButton(
                           onPressed: () {
-                            showDriverNameDialogAlert(
+                            showDriverAddressDialogAlert(
                                 context, onlineDriverData.address!);
                           },
                           icon: Icon(
@@ -342,7 +344,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                               : onlineDriverData.car_type == "Truck"
                                   ? "./assets/truck.png"
                                   : "./assets/bike.png",
-                          scale: 2,
+                          scale: 15,
                         ),
                       ],
                     ),

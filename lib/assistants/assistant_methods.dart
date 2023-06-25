@@ -29,14 +29,16 @@ class AssistantMethods {
   static Future<String> searchAddressForGeographicCoOrdinates(
       Position position, context) async {
     String apiUrl =
-        "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=$mapKey";
+        "https://nominatim.openstreetmap.org/ui/reverse.html?lat=${position.latitude}&${position.longitude}";
+    // "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=$mapKey";
     String humanReadableAddress = "";
 
     var requestResponse = await RequestAssistant.receiveRequest(apiUrl);
 
     if (requestResponse != "Error Occured. Failed. No Response.") {
-      humanReadableAddress = requestResponse["results"][0][
-          "formatted_address"]; //"CWH7+5P Mountain View, California, Hoa K\u1ef3";
+      humanReadableAddress = requestResponse["display_name"][0];
+      // humanReadableAddress = requestResponse["results"][0][
+      // "formatted_address"]; //"CWH7+5P Mountain View, California, Hoa K\u1ef3";
 
       Directions userPickUpAddress = Directions();
       userPickUpAddress.locationLatitude = position.latitude;
@@ -84,7 +86,7 @@ class AssistantMethods {
     double distanceTraveledFareAmountPerKilometer =
         (directionDetailsInfo.duration_value! / 1000) * 0.1;
     double totalFareAmount = distanceTraveledFareAmountPerKilometer * 22000;
-    double localCurrencyTotalFare = totalFareAmount * 107;
+    double localCurrencyTotalFare = totalFareAmount * 10;
 
     if (driverVehicleType == "Bike") {
       double resultFareAmount = ((localCurrencyTotalFare.truncate()) * 0.8);

@@ -1,4 +1,3 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -53,9 +52,6 @@ class PushNotificationSystem {
             .once()
             .then((snapData) {
           if (snapData.snapshot.value != null) {
-            audioPlayer.open(Audio("music/music_notification.mp3"));
-            audioPlayer.play();
-
             double originLat = double.parse(
                 (snapData.snapshot.value! as Map)["origin"]["latitude"]);
             double originLng = double.parse(

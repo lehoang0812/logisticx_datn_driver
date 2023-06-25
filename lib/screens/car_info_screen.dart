@@ -28,6 +28,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
         "car_model": carModelController.text.trim(),
         "car_number": carNumberController.text.trim(),
         "car_color": carColorController.text.trim(),
+        "car_type": selectedCarType,
       };
 
       DatabaseReference userRef =

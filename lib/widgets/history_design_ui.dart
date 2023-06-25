@@ -182,7 +182,9 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                         width: 15,
                       ),
                       Text(
-                        "${(widget.tripsHistoryModel!.originAddress!).substring(0, 15)}...",
+                        widget.tripsHistoryModel!.originAddress!.length > 14
+                            ? "${(widget.tripsHistoryModel!.originAddress!).substring(0, 14)}..."
+                            : "${(widget.tripsHistoryModel!.originAddress!)}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,

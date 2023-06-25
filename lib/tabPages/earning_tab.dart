@@ -40,7 +40,8 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                   Text(
                     Provider.of<AppInfo>(context, listen: false)
                             .driverTotalEarnings +
-                        "VNĐ",
+                        " VNĐ",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 60,
@@ -67,11 +68,11 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                 children: [
                   Image.asset(
                     onlineDriverData.car_type == "Car"
-                        ? "./assets/car.png"
+                        ? "./assets/ic_car.png"
                         : onlineDriverData.car_type == "Truck"
-                            ? "./assets/truck.png"
-                            : "./assets/bike.png",
-                    scale: 2,
+                            ? "./assets/ic_truck.png"
+                            : "./assets/ic_bike.png",
+                    scale: 20,
                   ),
                   SizedBox(
                     width: 10,
